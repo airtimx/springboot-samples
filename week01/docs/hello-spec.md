@@ -1,39 +1,69 @@
 # Hello 接口规格文档
 
-## 1. 核心目标
-- 开发一个 Hello 接口，返回统一格式的欢迎信息，用于验证 Spring Boot 项目的基本配置是否正确。
+## 1. 接口概述
 
-## 2. 业务规则
-- 接口路径：GET /api/hello
-- 无需请求参数
-- 返回 JSON，包含 code、msg、data 三个字段
-- code 固定为 200，表示成功
-- msg 固定为 "success"
-- data 为欢迎语字符串，例如："Hello Spring Boot"
+- **接口名称**: Hello 接口
+- **接口路径**: `GET /api/hello`
+- **功能说明**: 返回欢迎信息，验证服务是否正常运行
 
-## 3. 技术约束
-- 使用 Spring Boot 3.x
-- 使用 Java 17
-- 端口使用默认 8080
-- 返回类型使用统一包装类 ResultVO<String>
+## 2. 请求规范
 
-## 4. 输入输出
+### 2.1 请求路径
+```
+GET /api/hello
+```
 
-### 4.1 输入
-- 无请求体，无查询参数
+### 2.2 请求参数
+无参数
 
-### 4.2 输出
-- 成功示例：
+### 2.3 请求头
+```
+Content-Type: application/json
+```
+
+## 3. 响应规范
+
+### 3.1 成功响应
+
 ```json
 {
   "code": 200,
-  "msg": "success",
-  "data": "Hello Spring Boot"
+  "message": "success",
+  "data": "Hello, World!"
 }
 ```
 
-## 5. 验收标准
-- 项目能成功启动
-- 访问 /api/hello 返回 HTTP 状态码 200
-- 返回 JSON 结构中包含 code、msg、data 三个字段
-- data 字段内容为非空字符串，表达欢迎信息
+### 3.2 响应字段说明
+
+| 字段名 | 类型 | 说明 |
+|--------|------|------|
+| code | Integer | 状态码，200 表示成功 |
+| message | String | 响应信息 |
+| data | String | 返回的数据内容 |
+
+## 4. 错误响应
+
+暂无错误情况
+
+## 5. 示例
+
+### 请求示例
+```
+GET /api/hello
+```
+
+### 响应示例
+```json
+{
+  "code": 200,
+  "message": "success",
+  "data": "Hello, World!"
+}
+```
+
+## 6. 验收标准
+
+- [ ] 接口路径为 `GET /api/hello`
+- [ ] 返回 JSON 格式数据
+- [ ] 包含 code、message、data 三个字段
+- [ ] 启动项目后访问返回 HTTP 200
