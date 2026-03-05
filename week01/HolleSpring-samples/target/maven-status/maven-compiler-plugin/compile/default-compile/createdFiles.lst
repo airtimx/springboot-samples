@@ -1,3 +1,3 @@
-jiangyuze\example\hollespringsamples\HelloController.class
-jiangyuze\example\hollespringsamples\ResultVO.class
+jiangyuze\example\hollespringsamples\controller\HelloController.class
 jiangyuze\example\hollespringsamples\HolleSpringSamplesApplication.class
+jiangyuze\example\hollespringsamples\VO\ResultVO.class

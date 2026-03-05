@@ -1,4 +1,4 @@
-package jiangyuze.example.hollespringsamples;
+package jiangyuze.example.hollespringsamples.VO;
 
 public class ResultVO<T> {
 
