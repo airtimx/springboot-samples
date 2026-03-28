@@ -43,8 +43,9 @@ private String appName;
         return Map.of(
                 "applicationName", appConfig.getAppName(),
                 "appVersion", appConfig.getVersion(),
-                "appDescription", appConfig.getDescription()
-
+                "appDescription", appConfig.getDescription(),
+                "envs", appConfig.getEnvs(),
+                "author", appConfig.getAuthor()
         );
 
     }

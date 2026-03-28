@@ -1,0 +1,19 @@
+# 生产环境配置
+server:
+    port: 8083
+    # 8081-开发环境 / 8082-测试环境 / 8083-生产环境
+    servlet:
+        context-path: /api
+
+spring:
+    application:
+        name: Springboot-week03
+
+app:
+    appName: 企业后台管理系统(生产环境)
+    version: 1.0.0
+    description: Spring boot 3.5.11企业后台管理系统
+    envs: [ "dev", "test", "prod" ]
+    author:
+        name: "蒋玉泽"
+        email: "2750882957@qq.com"
