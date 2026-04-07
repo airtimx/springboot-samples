@@ -58,10 +58,11 @@
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
-            <artifactId>mockito-inline</artifactId>
-            <version>5.2.0</version>
+            <artifactId>mockito-core</artifactId>
+            <version>4.11.0</version>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
     <build>
         <plugins>
@@ -70,13 +71,10 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
                 <configuration>
-                    <!-- 开启 JDK 21 动态代理 + 加载 Mockito Agent，彻底消除警告 -->
-                    <argLine>-XX:+EnableDynamicAgentLoading -javaagent:${settings.localRepository}/org.mockito/mockito-core/5.17.0/mockito-core-5.17.0.jar</argLine>
+                    <!-- 开启 JDK 21 动态代理 -->
+                    <argLine>-XX:+EnableDynamicAgentLoading</argLine>
                 </configuration>
             </plugin>
-
-
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

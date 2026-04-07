@@ -19,16 +19,16 @@ public class Result<T> {
 
     // 成功响应（不带数据）
     public static <T> Result<T> success() {
-        return new Result<>(200, "success", null);
+        return new Result<>(200, "success", (T) "");
     }
 
     // 失败响应
     public static <T> Result<T> error(String message) {
-        return new Result<>(500, message, null);
+        return new Result<>(500, message, (T) "");
     }
 
     // 失败响应（自定义错误码）
     public static <T> Result<T> error(Integer code, String message) {
-        return new Result<>(code, message, null);
+        return new Result<>(code, message, (T) "");
     }
 }
