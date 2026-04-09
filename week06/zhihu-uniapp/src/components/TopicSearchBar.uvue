@@ -1,0 +1,53 @@
+<template>
+  <view class="search-bar">
+    <view class="search-input" @click="handleSearchClick">
+      <text class="search-icon">🔍</text>
+      <text class="search-placeholder">{{ placeholder }}</text>
+    </view>
+  </view>
+</template>
+
+<script>
+  export default {
+    props: {
+      placeholder: {
+        type: String,
+        default: '搜索专题'
+      }
+    },
+    methods: {
+      handleSearchClick() {
+        // 触发搜索事件
+        this.$emit('search');
+      }
+    }
+  };
+</script>
+
+<style>
+  .search-bar {
+    padding: 16rpx;
+    background-color: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  
+  .search-input {
+    display: flex;
+    align-items: center;
+    background-color: #f2f3f5;
+    border-radius: 20rpx;
+    padding: 12rpx 16rpx;
+  }
+  
+  .search-icon {
+    font-size: 20rpx;
+    margin-right: 8rpx;
+  }
+  
+  .search-placeholder {
+    font-size: 16rpx;
+    color: #8a919f;
+  }
+</style>

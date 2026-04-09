@@ -1,0 +1,107 @@
+<template>
+  <view class="topic-card" @click="handleCardClick">
+    <image v-if="topic.image" :src="topic.image" class="topic-image"></image>
+    <view v-else class="topic-image topic-image-placeholder">
+      <text class="placeholder-text">暂无图片</text>
+    </view>
+    <view class="topic-content">
+      <view class="topic-title">{{ topic.title }}</view>
+      <view class="topic-description">{{ topic.description }}</view>
+      <view class="topic-meta">
+        <text v-if="topic.author" class="topic-author">{{ topic.author }}</text>
+        <text v-if="topic.author && (topic.time || topic.views)" class="topic-divider">·</text>
+        <text v-if="topic.time" class="topic-time">{{ topic.time }}</text>
+        <text v-if="topic.time && topic.views" class="topic-divider">·</text>
+        <text class="topic-views">{{ topic.views }} 浏览</text>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+  export default {
+    props: {
+      topic: {
+        type: Object,
+        required: true
+      }
+    },
+    methods: {
+      handleCardClick() {
+        // 触发卡片点击事件
+        this.$emit('click', this.topic);
+      }
+    }
+  };
+</script>
+
+<style>
+  .topic-card {
+    background-color: #ffffff;
+    border-radius: 12rpx;
+    margin-bottom: 16rpx;
+    overflow: hidden;
+    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .topic-card:active {
+    transform: scale(0.98);
+    box-shadow: 0 1rpx 4rpx rgba(0, 0, 0, 0.05);
+  }
+  
+  .topic-image {
+    width: 100%;
+    height: 300rpx;
+    object-fit: cover;
+  }
+
+  .topic-image-placeholder {
+    background-color: #f2f3f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .placeholder-text {
+    color: #8a919f;
+    font-size: 14rpx;
+  }
+  
+  .topic-content {
+    padding: 16rpx;
+  }
+  
+  .topic-title {
+    font-size: 20rpx;
+    font-weight: 600;
+    margin-bottom: 8rpx;
+    line-height: 1.4;
+  }
+  
+  .topic-description {
+    font-size: 16rpx;
+    color: #666666;
+    margin-bottom: 12rpx;
+    line-height: 1.5;
+  }
+  
+  .topic-meta {
+    display: flex;
+    align-items: center;
+    font-size: 14rpx;
+    color: #8a919f;
+  }
+  
+  .topic-author {
+    margin-right: 8rpx;
+  }
+  
+  .topic-divider {
+    margin: 0 8rpx;
+  }
+  
+  .topic-time {
+    margin-right: 8rpx;
+  }
+</style>

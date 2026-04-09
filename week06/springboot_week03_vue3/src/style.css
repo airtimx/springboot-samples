@@ -1,0 +1,195 @@
+:root {
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', sans-serif;
+  line-height: 1.5;
+  color: #1f2329;
+  background-color: #f2f3f5;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #f2f3f5;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+.topic-page {
+  padding: 22px 0;
+}
+
+.topic-panel {
+  width: min(1120px, calc(100vw - 48px));
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid #e5e6eb;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.topic-head {
+  height: 58px;
+  padding: 0 22px;
+  border-bottom: 1px solid #e5e6eb;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.head-left {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.head-title {
+  font-size: 31px;
+  line-height: 1;
+  font-weight: 600;
+  color: #1772f6;
+}
+
+.head-count {
+  color: #8a919f;
+  font-size: 14px;
+}
+
+.search-wrap {
+  width: 280px;
+}
+
+.head-subtitle {
+  padding: 12px 22px;
+  color: #8a919f;
+  font-size: 13px;
+  border-bottom: 1px solid #f0f1f2;
+}
+
+.topic-list {
+  padding: 8px 14px 0;
+}
+
+.topic-item {
+  border: 1px solid #e8eaed;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  gap: 14px;
+  align-items: stretch;
+  background: #fff;
+}
+
+.topic-cover {
+  width: 190px;
+  height: 106px;
+  border-radius: 2px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.topic-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.topic-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.topic-main h3 {
+  margin: 0;
+  color: #1772f6;
+  font-size: 30px;
+  line-height: 1.2;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.topic-meta {
+  color: #8a919f;
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+.topic-main p {
+  margin: 11px 0 0;
+  color: #4e5969;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.topic-action {
+  width: 125px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.follow-btn {
+  width: 96px;
+  height: 33px;
+  border-color: #5ca6ff;
+  color: #5ca6ff;
+  background: #f2f8ff;
+}
+
+.follow-btn:hover {
+  border-color: #1677ff;
+  color: #1677ff;
+  background: #eaf3ff;
+}
+
+.browse {
+  color: #8a919f;
+  font-size: 12px;
+}
+
+.pager {
+  padding: 8px 0 20px;
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 960px) {
+  .topic-main h3 {
+    font-size: 22px;
+  }
+
+  .topic-item {
+    flex-direction: column;
+  }
+
+  .topic-cover,
+  .topic-action {
+    width: 100%;
+  }
+
+  .topic-action {
+    align-items: flex-start;
+    gap: 8px;
+  }
+}

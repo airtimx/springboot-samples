@@ -1,0 +1,44 @@
+<template>
+  <view class="content">
+    <view class="title">发现</view>
+    <view class="description">发现更多精彩内容</view>
+  </view>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        title: '发现'
+      }
+    },
+    onLoad() {
+
+    },
+    methods: {
+
+    }
+  }
+</script>
+
+<style>
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f2f3f5;
+  }
+  
+  .title {
+    font-size: 24rpx;
+    font-weight: bold;
+    margin-bottom: 20rpx;
+  }
+  
+  .description {
+    font-size: 16rpx;
+    color: #8a919f;
+  }
+</style>

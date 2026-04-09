@@ -1,0 +1,156 @@
+<template>
+  <scroll-view class="page" scroll-y>
+    <image v-if="topic.image" class="banner" :src="topic.image"></image>
+    <view v-else class="banner banner-empty">
+      <text class="banner-empty-text">暂无图片</text>
+    </view>
+
+    <view class="card">
+      <text class="title">{{ topic.title || '未命名专题' }}</text>
+      <text class="desc">{{ topic.description || '暂无简介' }}</text>
+
+      <view class="meta-row">
+        <text v-if="topic.author" class="meta">{{ topic.author }}</text>
+        <text v-if="topic.author && (topic.time || topic.views)" class="dot">·</text>
+        <text v-if="topic.time" class="meta">{{ topic.time }}</text>
+        <text v-if="topic.time && topic.views" class="dot">·</text>
+        <text class="meta">{{ topic.views || '0' }} 浏览</text>
+      </view>
+    </view>
+  </scroll-view>
+</template>
+
+<script>
+  import topicApi from '../../src/api/topic';
+
+  export default {
+    data() {
+      return {
+        topic: {}
+      };
+    },
+    methods: {
+      toTextValue(obj, keys, fallback = '') {
+        for (let i = 0; i < keys.length; i++) {
+          const key = keys[i];
+          const value = obj[key];
+          if (typeof value === 'string' && value.trim()) {
+            return value.trim();
+          }
+        }
+        return fallback;
+      },
+      toViewText(obj) {
+        const raw = obj ? obj.view_count : '';
+        if (typeof raw === 'number') {
+          return String(raw);
+        }
+        if (typeof raw === 'string' && raw.trim()) {
+          return raw.trim().replace(/浏览$/, '');
+        }
+        return '0';
+      },
+      mapTopic(item) {
+        try {
+          const jsonData = item && item.jsonData ? JSON.parse(item.jsonData) : {};
+          return {
+            id: String(item.id || ''),
+            title: this.toTextValue(jsonData, ['title', 'topicTitle', 'name'], '未命名专题'),
+            description: this.toTextValue(jsonData, ['description', 'introduction', 'summary'], ''),
+            image: this.toTextValue(jsonData, ['banner'], ''),
+            author: this.toTextValue(jsonData, ['author', 'creator', 'source'], ''),
+            time: item.createTime ? new Date(item.createTime).toISOString().split('T')[0] : '',
+            views: this.toViewText(jsonData)
+          };
+        } catch (error) {
+          return {
+            id: String(item && item.id ? item.id : ''),
+            title: '数据格式错误',
+            description: '',
+            image: '',
+            author: '',
+            time: item && item.createTime ? new Date(item.createTime).toISOString().split('T')[0] : '',
+            views: '0'
+          };
+        }
+      }
+    },
+    onLoad(options) {
+      const id = options && options.id ? options.id : '';
+      if (!id) {
+        this.topic = {};
+        return;
+      }
+      topicApi.getTopicDetail(id).then((res) => {
+        this.topic = this.mapTopic(res || {});
+      }).catch(() => {
+        this.topic = {};
+      });
+    }
+  };
+</script>
+
+<style>
+  .page {
+    min-height: 100vh;
+    background: #f2f3f5;
+  }
+
+  .banner {
+    width: 100%;
+    height: 360rpx;
+    background: #e8eaf0;
+  }
+
+  .banner-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .banner-empty-text {
+    color: #8a919f;
+    font-size: 14rpx;
+  }
+
+  .card {
+    background: #ffffff;
+    border-radius: 12rpx;
+    margin: 16rpx;
+    padding: 20rpx;
+  }
+
+  .title {
+    display: block;
+    font-size: 22rpx;
+    font-weight: 600;
+    color: #1f2329;
+    line-height: 1.5;
+  }
+
+  .desc {
+    display: block;
+    margin-top: 12rpx;
+    font-size: 16rpx;
+    color: #4e5969;
+    line-height: 1.6;
+  }
+
+  .meta-row {
+    margin-top: 16rpx;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .meta {
+    font-size: 14rpx;
+    color: #8a919f;
+  }
+
+  .dot {
+    margin: 0 8rpx;
+    color: #8a919f;
+    font-size: 14rpx;
+  }
+</style>
